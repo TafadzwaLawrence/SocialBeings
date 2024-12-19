@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->id();
             }
             $userTable = config('socialbeings.user_table');
-            $table->foreignId('favorable_id')->constrained($userTable)->onDelete('cascade');
+            $table->foreignId('favor_id')->constrained($userTable)->onDelete('cascade');
             $table->morphs('favorable');
             $table->timestamps();
         });

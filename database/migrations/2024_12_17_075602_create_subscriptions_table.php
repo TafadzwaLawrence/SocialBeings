@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->id();
             }
             $userTable = config('socialbeings.user_table');
-            $table->foreignId('subscribable_id')->constrained($userTable)->onDelete('cascade');
+            $table->foreignId('subscriber_id')->constrained($userTable)->onDelete('cascade');
             $table->morphs('subscribable');
             $table->timestamps();
         });

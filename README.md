@@ -30,7 +30,7 @@ php artisan vendor:publish --tag="socialbeings-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+You can publish the config file with:s
 
 ```bash
 php artisan vendor:publish --tag="socialbeings-config"
@@ -49,8 +49,10 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="socialbeings-views"
 ```
 
-## Following 
-# You can follow any model by using import the CanFollow Trait which enable a trait to follow another model
+## Following
+
+You can follow any model by using import the CanFollow Trait which enable a trait to follow another model
+
 ```php
 namespace App\Models;
 
@@ -60,11 +62,12 @@ use Likesocialjson\Likesocial\Traits\CanFollow;
 class User extends Authenticatable
 {
     use CanFollow;
-
     // Other model properties and methods...
 }
 ```
-# Then the model you want to follow add the following trait
+
+Then the model you want to follow add the following trait
+
 ```php
 <?php
 
@@ -80,6 +83,7 @@ class Post extends Model
     // Other model properties and methods...
 }
 ```
+
 ## Testing
 
 ```bash

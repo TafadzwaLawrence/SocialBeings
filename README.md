@@ -40,6 +40,9 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'use_uuids' => false, // Default to false, can be set to true by the user
+
+    'user_table' => env('USER_TABLE', 'users'), // Default to 'users'
 ];
 ```
 

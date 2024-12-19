@@ -20,9 +20,9 @@ class SocialBeingsServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigrations([
-                '2024_12_17_075049_create_follows_table.php',
-                '2024_12_17_075529_create_likes_table.php',
-                '2024_12_17_075543_create_favourites_table.php',
+                '2024_12_17_075049_create_follows_table',
+                '2024_12_17_075529_create_likes_table',
+                '2024_12_17_075543_create_favourites_table',
                 '2024_12_17_075602_create_subscriptions_table',
                 '2024_12_17_075648_create_friends_table',
             ])

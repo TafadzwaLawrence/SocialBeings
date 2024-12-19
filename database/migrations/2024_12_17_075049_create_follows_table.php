@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('follows', function (Blueprint $table) {
-            if (config('likesocial.use_uuids')) {
+            if (config('socialbeings.use_uuids')) {
                 $table->uuid('id')->primary();
             } else {
                 $table->id();
             }
-            $userTable = config('likesocial.user_table');
+            $userTable = config('socialbeings.user_table');
 
             // This should be the ID of the user who is following
             $table->foreignId('follower_id')->constrained($userTable)->onDelete('cascade');

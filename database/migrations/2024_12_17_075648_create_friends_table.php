@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('friends', function (Blueprint $table) {
-            if (config('likesocial.use_uuids')) { // Use 'likesocial' instead of 'mypackage'
+            if (config('socialbeings.use_uuids')) { // Use 'socialbeings' instead of 'mypackage'
                 $table->uuid('id')->primary();
             } else {
                 $table->id();
             }
-            $userTable = config('likesocial.user_table');
+            $userTable = config('socialbeings.user_table');
             $table->foreignId('friend_id')->constrained($userTable)->onDelete('cascade');
             $table->morphs('friendable');
             $table->timestamps();

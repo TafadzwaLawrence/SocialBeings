@@ -49,13 +49,37 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="socialbeings-views"
 ```
 
-## Usage
-
+## Following 
+# You can follow any model by using import the CanFollow Trait which enable a trait to follow another model
 ```php
-$socialBeings = new Tafadzwa Lawrence\SocialBeings();
-echo $socialBeings->echoPhrase('Hello, Tafadzwa Lawrence!');
-```
+namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Likesocialjson\Likesocial\Traits\CanFollow;
+
+class User extends Authenticatable
+{
+    use CanFollow;
+
+    // Other model properties and methods...
+}
+```
+# Then the model you want to follow add the following trait
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Likesocialjson\Likesocial\Traits\Followable;
+
+class Post extends Model
+{
+    use Followable;
+
+    // Other model properties and methods...
+}
+```
 ## Testing
 
 ```bash

@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('interactions', function (Blueprint $table) {
-            if (config('likesocial.use_uuids')) {
+            if (config('socialbeings.use_uuids')) {
                 $table->uuid('id')->primary();
             } else {
                 $table->id();
             }
-            $userTable = config('likesocial.user_table');
+            $userTable = config('socialbeings.user_table');
             $table->foreignId('sender_id')->constrained($userTable)->onDelete('cascade');
             $table->foreignId('receiver_id')->constrained($userTable)->onDelete('cascade');
             $table->enum('type', ['send_request', 'accept_request', 'reject_request']);

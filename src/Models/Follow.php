@@ -23,7 +23,7 @@ class Follow extends Model
     {
         parent::__construct($attributes);
 
-        if (config('likesocial.use_uuids')) {
+        if (config('socialbeings.use_uuids')) {
             $this->keyType = 'string';
             $this->incrementing = false;
         } else {
@@ -37,7 +37,7 @@ class Follow extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if (config('likesocial.use_uuids')) {
+            if (config('socialbeings.use_uuids')) {
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }
         });

@@ -87,6 +87,70 @@ class Post extends Model
 }
 ```
 
+Use Cases
+
+```php
+
+    $user = User::find(1);
+    $post = Post::find(1);
+
+    $user->follow($post);
+    $user->unfollow($post);
+    $user->isFollowedBy($post);
+
+    $post->followers(); //Retrieve all the followers
+    $post->getFollowersCountAttribute();  // Count the number of followers
+    $post->getFormattedFollowersCountAttribute();  // Formats using 10K if count is > 1000
+
+```
+
+## Likes
+
+You can like any model by using import the CanFollow Trait which enable a trait to follow another model
+
+```php
+namespace App\Models;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Likesocialjson\Likesocial\Traits\CanLike;
+
+class User extends Authenticatable
+{
+    use CanLike;
+    // Other model properties and methods...
+}
+```
+
+Then the model you want to follow add the following trait
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Likesocialjson\Likesocial\Traits\Likable;
+
+class Post extends Model
+{
+    use Likable;
+
+    // Other model properties and methods...
+}
+```
+
+Use case
+
+```php
+
+    $user = User::find(1);
+    $post = Post::find(1);
+
+    $user->like($post);
+    $user->unlike($post);
+
+```
+
 ## Testing
 
 ```bash

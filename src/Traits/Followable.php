@@ -6,7 +6,7 @@ use TafadzwaLawrence\SocialBeings\Models\Follow;
 
 trait Followable
 {
-    /**
+    /**li
      * Get all of the followers for the model.
      */
     public function followers()

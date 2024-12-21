@@ -15,7 +15,7 @@ trait CanLike
     public function like($likeable)
     {
         return $this->likes()->create([
-            'user_id' => $this->id,
+            'liker_id' => $this->id,
             'likable_id' => $likeable->id,
             'likable_type' => get_class($likeable),
         ]);

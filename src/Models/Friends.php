@@ -15,9 +15,9 @@ class Friends extends Model
         'friendable_type',
     ];
 
-    protected $keyType;
+    protected $keyType = 'int'; // Default key type
 
-    public $incrementing;
+    public $incrementing = true; // Default incrementing
 
     public function __construct(array $attributes = [])
     {
@@ -26,9 +26,6 @@ class Friends extends Model
         if (config('socialbeings.use_uuids')) {
             $this->keyType = 'string';
             $this->incrementing = false;
-        } else {
-            $this->keyType = 'int';
-            $this->incrementing = true;
         }
     }
 

@@ -4,7 +4,7 @@ namespace TafadzwaLawrence\SocialBeings\Traits;
 
 use TafadzwaLawrence\SocialBeings\Models\Favourite;
 
-trait Favoriteable
+trait Favourable
 {
     /**
      * Get all of the favoriteers for the model.

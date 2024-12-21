@@ -26,6 +26,28 @@ trait Likeable
     }
 
     /**
+     * like the model.
+     *
+     * @param  int  $userId
+     * @return like
+     */
+    public function like($userId)
+    {
+        return $this->likes()->create(['liker_id' => $userId]);
+    }
+
+    /**
+     * like the model.
+     *
+     * @param  int  $userId
+     * @return like
+     */
+    public function unlike($userId)
+    {
+        return $this->likes()->where('liker_id', $userId)->delete();
+    }
+
+    /**
      * Get the count of likes.
      *
      * @return int

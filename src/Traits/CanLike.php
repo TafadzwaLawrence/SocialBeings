@@ -2,35 +2,37 @@
 
 namespace TafadzwaLawrence\SocialBeings\Traits;
 
-use TafadzwaLawrence\SocialBeings\Models\Like;
-
 trait CanLike
 {
     /**
-     * Like a likeable model.
+     * Follow a followable model.
      *
-     * @param  mixed  $likeable
-     * @return Like
+     * @param  mixed  $followable
+     * @return Follow
      */
     public function like($likeable)
     {
-        return $this->likes()->create([
-            'liker_id' => $this->id,
-            'likable_id' => $likeable->id,
-            'likable_type' => get_class($likeable),
-        ]);
+        // Ensure the model is followable
+        if (method_exists($likeable, 'isLikedBy')) {
+            return $likeable->like($this->id);
+        }
+
+        throw new \Exception('The model is not likeable.');
     }
 
     /**
-     * Unlike a likeable model.
+     * Follow a followable model.
      *
-     * @param  mixed  $likeable
-     * @return int
+     * @param  mixed  $followable
+     * @return Follow
      */
     public function unlike($likeable)
     {
-        return $this->likes()->where('likable_id', $likeable->id)
-            ->where('likable_type', get_class($likeable))
-            ->delete();
+        // Ensure the model is followable
+        if (method_exists($likeable, 'isLikedBy')) {
+            return $likeable->like($this->id);
+        }
+
+        throw new \Exception('The model is not likeable.');
     }
 }

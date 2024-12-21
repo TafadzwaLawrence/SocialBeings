@@ -9,6 +9,12 @@ class Like extends Model
 {
     protected $table = 'likes';
 
+    protected $fillable = [
+        'liker_id',
+        'likable_id',
+        'likable_type',
+    ];
+
     // Set the key type and incrementing based on the configuration
     protected $keyType;
 

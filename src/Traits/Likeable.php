@@ -56,4 +56,20 @@ trait Likeable
     {
         return $this->likes()->count();
     }
+
+    /**
+     * Accessor to get the formatted count of followers.
+     *
+     * @return string
+     */
+    public function getFormattedLikersCountAttribute()
+    {
+        $count = $this->likers_count; // Use the followers count accessor
+
+        if ($count >= 1000) {
+            return round($count / 1000, 1).'K'; // Format as K
+        }
+
+        return $count; // Return the count as is if less than 1000
+    }
 }

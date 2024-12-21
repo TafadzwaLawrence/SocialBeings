@@ -22,7 +22,7 @@ trait Favourable
      */
     public function isfavouredBy($userId)
     {
-        return $this->favorites()->where('favorable_id', $userId)->exists();
+        return $this->favorites()->where('favor_id', $userId)->exists();
     }
 
     /**
@@ -33,7 +33,7 @@ trait Favourable
      */
     public function favour($userId)
     {
-        return $this->favorites()->create(['favorable_id' => $userId]);
+        return $this->favorites()->create(['favor_id' => $userId]);
     }
 
     /**
@@ -44,7 +44,7 @@ trait Favourable
      */
     public function unfavour($userId)
     {
-        return $this->favorites()->where('favorable_id', $userId)->delete();
+        return $this->favorites()->where('favor_id', $userId)->delete();
     }
 
     /**

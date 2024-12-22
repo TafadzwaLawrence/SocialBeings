@@ -2,7 +2,7 @@
 
 namespace TafadzwaLawrence\SocialBeings\Traits;
 
-use TafadzwaLawrence\SocialBeings\Models\Subscription;
+use TafadzwaLawrence\SocialBeings\Models\Subscriptions;
 
 trait Subscribable
 {

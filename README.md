@@ -147,7 +147,59 @@ Use case
     $post = Post::find(1);
 
     $user->like($post);
-    $user->unlike($post);
+    $post->unlike($user->id);
+    $post->isLikedBy($user->id)
+
+```
+
+## Favourites
+
+You can favour any model by using import the CanFavor Trait which enable a trait to follow another model
+
+```php
+namespace App\Models;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Likesocialjson\Likesocial\Traits\CanFavor;
+
+class User extends Authenticatable
+{
+    use CanFavor;
+    // Other model properties and methods...
+}
+```
+
+Then the model you want to favour add the following trait
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Likesocialjson\Likesocial\Traits\Favourable;
+
+class Post extends Model
+{
+    use Favourable;
+
+    // Other model properties and methods...
+}
+```
+
+Use case
+
+```php
+
+    $user = User::find(1);
+    $post = Post::find(1);
+
+    $user->favour($post);
+    $post->unfavour($user->id);
+    $post->isfavouredBy($user->id)
+
+    $post->favorites;
+    $post->favouriteers_count; // K format for > 1000 favourites
 
 ```
 

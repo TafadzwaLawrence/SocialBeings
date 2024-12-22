@@ -2,8 +2,6 @@
 
 namespace TafadzwaLawrence\SocialBeings\Traits;
 
-use TafadzwaLawrence\SocialBeings\Models\Subscription;
-
 trait CanSubscribe
 {
     /**
@@ -14,11 +12,12 @@ trait CanSubscribe
      */
     public function subscribe($subscribable)
     {
-        return $this->subscriptions()->create([
-            'subscriber_id' => $this->id,
-            'subscribable_id' => $subscribable->id,
-            'subscribable_type' => get_class($subscribable),
-        ]);
+        // Ensure the model is followable
+        if (method_exists($subscribable, 'isSubscribedBy')) {
+            return $subscribable->subscribe($this->id);
+        }
+
+        throw new \Exception('The model is not subscribeable.');
     }
 
     /**
@@ -29,8 +28,11 @@ trait CanSubscribe
      */
     public function unsubscribe($subscribable)
     {
-        return $this->subscriptions()->where('subscribable_id', $subscribable->id)
-            ->where('subscribable_type', get_class($subscribable))
-            ->delete();
+        // Ensure the model is followable
+        if (method_exists($subscribable, 'isSubscribedBy')) {
+            return $subscribable->subscribe($this->id);
+        }
+
+        throw new \Exception('The model is not subscribeable.');
     }
 }

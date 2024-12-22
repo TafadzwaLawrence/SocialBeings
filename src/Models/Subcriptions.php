@@ -5,9 +5,15 @@ namespace TafadzwaLawrence\SocialBeings\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Subscription extends Model
+class Subscriptions extends Model
 {
     protected $table = 'subscriptions';
+
+    protected $fillable = [
+        'subscriber_id',
+        'subscribable_id',
+        'subscribable_type',
+    ];
 
     // Set the key type and incrementing based on the configuration
     protected $keyType;

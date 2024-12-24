@@ -26,6 +26,17 @@ trait Subscribable
     }
 
     /**
+     * Unfollow the model.
+     *
+     * @param  int  $userId
+     * @return int
+     */
+    public function unsubcribe($userId)
+    {
+        return $this->subscriptions()->where('subscriber_id', $userId)->delete();
+    }
+
+    /**
      * Get the count of subscribers.
      *
      * @return int

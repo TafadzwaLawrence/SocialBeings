@@ -5,15 +5,16 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/tafadzwa/socialbeings/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/tafadzwa/socialbeings/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/tafadzwa/socialbeings.svg?style=flat-square)](https://packagist.org/packages/tafadzwa/socialbeings)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A powerful and flexible package designed to streamline and enhance user engagement within your Laravel applications. This package provides seamless integration for features such as **likes**, **favorites**, **subscriptions**, and **follows**, allowing you to easily implement and manage user interactions.
 
-## Support us
+## Key Features
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/SocialBeings.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/SocialBeings)
+- **Likes**: Enable users to express their appreciation for content.
+- **Favorites**: Allow users to save and revisit their preferred items.
+- **Subscriptions**: Keep users updated with the latest content through notifications.
+- **Follows**: Facilitate user connections and community building.
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Elevate your application’s functionality and keep your users engaged with our comprehensive solution!
 
 ## Installation
 
@@ -44,12 +45,6 @@ return [
 
     'user_table' => env('USER_TABLE', 'users'), // Default to 'users'
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="socialbeings-views"
 ```
 
 ## Following
@@ -200,6 +195,57 @@ Use case
 
     $post->favorites;
     $post->favouriteers_count; // K format for > 1000 favourites
+
+```
+
+## Subscriptions
+
+You can favour any model by using import the CanFavor Trait which enable a trait to follow another model
+
+```php
+namespace App\Models;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Likesocialjson\Likesocial\Traits\CanFavor;
+
+class User extends Authenticatable
+{
+    use CanSubscribe;
+    // Other model properties and methods...
+}
+```
+
+Then the model you want to favour add the following trait
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Likesocialjson\Likesocial\Traits\Favourable;
+
+class Post extends Model
+{
+    use Subscribable;
+
+    // Other model properties and methods...
+}
+```
+
+Use case
+
+```php
+
+    $user = User::find(1);
+    $post = Post::find(1);
+
+    $user->subscribe($post);
+    $post->unsubscribe($user->id);
+    $post->isSubscribedBy($user->id)
+
+    $post->subscriptions;
+    $post->subscribers_count; // K format for > 1000 favourites
 
 ```
 

@@ -2,7 +2,7 @@
 
 namespace TafadzwaLawrence\SocialBeings\Traits;
 
-use TafadzwaLawrence\SocialBeings\Models\Subscriptions;
+use TafadzwaLawrence\SocialBeings\Models\Subscriptions as SubscriptionsModel;
 
 trait Subscribable
 {
@@ -11,7 +11,7 @@ trait Subscribable
      */
     public function subscriptions()
     {
-        return $this->morphMany(Subscription::class, 'subscribable');
+        return $this->morphMany(SubscriptionsModel::class, 'subscribable');
     }
 
     /**
@@ -26,12 +26,23 @@ trait Subscribable
     }
 
     /**
-     * Unfollow the model.
+     * Subscribe to the model.
+     *
+     * @param  int  $userId
+     * @return Subscription
+     */
+    public function subscribe($userId)
+    {
+        return $this->subscriptions()->create(['subscriber_id' => $userId]);
+    }
+
+    /**
+     * Unsubscribe from the model.
      *
      * @param  int  $userId
      * @return int
      */
-    public function unsubcribe($userId)
+    public function unsubscribe($userId)
     {
         return $this->subscriptions()->where('subscriber_id', $userId)->delete();
     }

@@ -5,7 +5,7 @@ namespace TafadzwaLawrence\SocialBeings\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Tafadzwa Lawrence\SocialBeings\SocialBeings
+ * @see \TafadzwaLawrence\SocialBeings\SocialBeings
  */
 class SocialBeings extends Facade
 {

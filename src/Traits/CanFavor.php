@@ -7,15 +7,15 @@ use Exception;
 trait CanFavor
 {
     /**
-     * Follow a followable model.
+     * Favor a favorable model.
      *
-     * @param  mixed  $followable
-     * @return Follow
+     * @param  mixed  $favorable
+     * @return Favourite
      */
     public function favour($favorable)
     {
-        // Ensure the model is followable
-        if (method_exists($favorable, 'isfavouredBy')) {
+        // Ensure the model is favorable
+        if (method_exists($favorable, 'isFavouredBy')) {
             return $favorable->favour($this->id);
         }
 
@@ -23,15 +23,15 @@ trait CanFavor
     }
 
     /**
-     * Unfollow a followable model.
+     * Unfavor a favorable model.
      *
-     * @param  mixed  $followable
+     * @param  mixed  $favorable
      * @return int
      */
     public function unfavour($favorable)
     {
-        // Ensure the model is followable
-        if (method_exists($favorable, 'isfavouredBy')) {
+        // Ensure the model is favorable
+        if (method_exists($favorable, 'isFavouredBy')) {
             return $favorable->unfavour($this->id);
         }
 
@@ -39,16 +39,16 @@ trait CanFavor
     }
 
     /**
-     * Check if the model is following a followable model.
+     * Check if the user has favored a favorable model.
      *
-     * @param  mixed  $followable
+     * @param  mixed  $favorable
      * @return bool
      */
     public function isFavourite($favorable)
     {
-        // Ensure the model is followable
-        if (method_exists($favorable, 'isFollowedBy')) {
-            return $favorable->isfavouredBy($this->id);
+        // Ensure the model is favorable
+        if (method_exists($favorable, 'isFavouredBy')) {
+            return $favorable->isFavouredBy($this->id);
         }
 
         throw new \Exception('The model is not favourable.');

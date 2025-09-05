@@ -7,7 +7,7 @@ use TafadzwaLawrence\SocialBeings\Models\Favourite;
 trait Favourable
 {
     /**
-     * Get all of the favoriteers for the model.
+     * Get all of the favorites for the model.
      */
     public function favorites()
     {
@@ -15,21 +15,21 @@ trait Favourable
     }
 
     /**
-     * Determine if the model is favoriteed by a given user.
+     * Determine if the model is favored by a given user.
      *
      * @param  int  $userId
      * @return bool
      */
-    public function isfavouredBy($userId)
+    public function isFavouredBy($userId)
     {
         return $this->favorites()->where('favor_id', $userId)->exists();
     }
 
     /**
-     * favorite the model.
+     * Favor the model.
      *
      * @param  int  $userId
-     * @return favorite
+     * @return Favourite
      */
     public function favour($userId)
     {
@@ -37,7 +37,7 @@ trait Favourable
     }
 
     /**
-     * Unfavorite the model.
+     * Unfavor the model.
      *
      * @param  int  $userId
      * @return int
@@ -48,23 +48,23 @@ trait Favourable
     }
 
     /**
-     * Accessor to get the count of favoriteers.
+     * Accessor to get the count of favorites.
      *
      * @return int
      */
-    public function getfavouriteersCountAttribute()
+    public function getFavoritesCountAttribute()
     {
         return $this->favorites()->count();
     }
 
     /**
-     * Accessor to get the formatted count of favoriteers.
+     * Accessor to get the formatted count of favorites.
      *
      * @return string
      */
-    public function getFormattedfavoriteersCountAttribute()
+    public function getFormattedFavoritesCountAttribute()
     {
-        $count = $this->favourites_count; // Use the favoriteers count accessor
+        $count = $this->favorites_count; // Use the favorites count accessor
 
         if ($count >= 1000) {
             return round($count / 1000, 1).'K'; // Format as K

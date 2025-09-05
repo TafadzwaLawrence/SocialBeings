@@ -25,7 +25,7 @@ class Like extends Model
         parent::__construct($attributes);
 
         // Set key type and incrementing based on configuration
-        if (config('likesocial.use_uuids')) {
+        if (config('socialbeings.use_uuids')) {
             $this->keyType = 'string';
             $this->incrementing = false;
         } else {
@@ -39,15 +39,15 @@ class Like extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if (config('likesocial.use_uuids')) {
+            if (config('socialbeings.use_uuids')) {
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }
         });
     }
 
-    public function user()
+    public function liker()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(config('socialbeings.user_model'), 'liker_id');
     }
 
     public function likable()

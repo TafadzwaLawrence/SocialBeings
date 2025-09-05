@@ -12,28 +12,26 @@ trait CanSubscribe
      */
     public function subscribe($subscribable)
     {
-        // Ensure the model is followable
         if (method_exists($subscribable, 'isSubscribedBy')) {
             return $subscribable->subscribe($this->id);
         }
 
-        throw new \Exception('The model is not subscribeable.');
+        throw new \Exception('The model is not subscribable.');
     }
 
     /**
-     * Subscribe to a subscribable model.
+     * Check if the user is subscribed to a subscribable model.
      *
      * @param  mixed  $subscribable
-     * @return Subscription
+     * @return bool
      */
-    public function isSubscribedBy($subscribable)
+    public function isSubscribedTo($subscribable)
     {
-        // Ensure the model is followable
         if (method_exists($subscribable, 'isSubscribedBy')) {
-            return $subscribable->subscribe($this->id);
+            return $subscribable->isSubscribedBy($this->id);
         }
 
-        throw new \Exception('The model is not subscribeable.');
+        throw new \Exception('The model is not subscribable.');
     }
 
     /**
@@ -44,11 +42,10 @@ trait CanSubscribe
      */
     public function unsubscribe($subscribable)
     {
-        // Ensure the model is followable
         if (method_exists($subscribable, 'isSubscribedBy')) {
-            return $subscribable->subscribe($this->id);
+            return $subscribable->unsubscribe($this->id);
         }
 
-        throw new \Exception('The model is not subscribeable.');
+        throw new \Exception('The model is not subscribable.');
     }
 }

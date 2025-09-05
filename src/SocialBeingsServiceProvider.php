@@ -25,6 +25,7 @@ class SocialBeingsServiceProvider extends PackageServiceProvider
                 '2024_12_17_075543_create_favourites_table',
                 '2024_12_17_075602_create_subscriptions_table',
                 '2024_12_17_075648_create_friends_table',
+                '2024_12_17_082115_create_interactions_table',
             ])
             ->runsMigrations()
             ->hasCommand(SocialBeingsCommand::class);

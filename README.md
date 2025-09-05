@@ -55,7 +55,7 @@ You can follow any model by using import the CanFollow Trait which enable a trai
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Likesocialjson\Likesocial\Traits\CanFollow;
+use TafadzwaLawrence\SocialBeings\Traits\CanFollow;
 
 class User extends Authenticatable
 {
@@ -72,7 +72,7 @@ Then the model you want to follow add the following trait
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Likesocialjson\Likesocial\Traits\Followable;
+use TafadzwaLawrence\SocialBeings\Traits\Followable;
 
 class Post extends Model
 {
@@ -107,7 +107,7 @@ You can like any model by using import the CanFollow Trait which enable a trait 
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Likesocialjson\Likesocial\Traits\CanLike;
+use TafadzwaLawrence\SocialBeings\Traits\CanLike;
 
 class User extends Authenticatable
 {
@@ -124,11 +124,11 @@ Then the model you want to follow add the following trait
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Likesocialjson\Likesocial\Traits\Likable;
+use TafadzwaLawrence\SocialBeings\Traits\Likeable;
 
 class Post extends Model
 {
-    use Likable;
+    use Likeable;
 
     // Other model properties and methods...
 }
@@ -149,13 +149,13 @@ Use case
 
 ## Favourites
 
-You can favour any model by using import the CanFavor Trait which enable a trait to follow another model
+You can favor any model by using import the CanFavor Trait which enable a trait to favor another model
 
 ```php
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Likesocialjson\Likesocial\Traits\CanFavor;
+use TafadzwaLawrence\SocialBeings\Traits\CanFavor;
 
 class User extends Authenticatable
 {
@@ -172,7 +172,7 @@ Then the model you want to favour add the following trait
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Likesocialjson\Likesocial\Traits\Favourable;
+use TafadzwaLawrence\SocialBeings\Traits\Favourable;
 
 class Post extends Model
 {
@@ -191,10 +191,10 @@ Use case
 
     $user->favour($post);
     $post->unfavour($user->id);
-    $post->isfavouredBy($user->id)
+    $post->isFavouredBy($user->id)
 
     $post->favorites;
-    $post->favouriteers_count; // K format for > 1000 favourites
+    $post->favorites_count; // K format for > 1000 favourites
 
 ```
 
@@ -206,7 +206,7 @@ You can favour any model by using import the CanFavor Trait which enable a trait
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Likesocialjson\Likesocial\Traits\CanFavor;
+use TafadzwaLawrence\SocialBeings\Traits\CanSubscribe;
 
 class User extends Authenticatable
 {
@@ -223,7 +223,7 @@ Then the model you want to favour add the following trait
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Likesocialjson\Likesocial\Traits\Favourable;
+use TafadzwaLawrence\SocialBeings\Traits\Subscribable;
 
 class Post extends Model
 {

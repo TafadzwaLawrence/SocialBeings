@@ -45,7 +45,7 @@ class Friends extends Model
      */
     public function friend()
     {
-        return $this->belongsTo(User::class, 'friend_id');
+        return $this->belongsTo(config('socialbeings.user_model'), 'friend_id');
     }
 
     /**

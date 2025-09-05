@@ -48,7 +48,7 @@ class Favourite extends Model
      */
     public function favor()
     {
-        return $this->belongsTo(User::class, 'favor_id');
+        return $this->belongsTo(config('socialbeings.user_model'), 'favor_id');
     }
 
     /**

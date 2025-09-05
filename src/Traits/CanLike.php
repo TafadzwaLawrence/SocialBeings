@@ -28,9 +28,8 @@ trait CanLike
      */
     public function unlike($likeable)
     {
-        // Ensure the model is followable
         if (method_exists($likeable, 'isLikedBy')) {
-            return $likeable->like($this->id);
+            return $likeable->unlike($this->id);
         }
 
         throw new \Exception('The model is not likeable.');

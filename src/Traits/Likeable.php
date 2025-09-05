@@ -22,7 +22,7 @@ trait Likeable
      */
     public function isLikedBy($userId)
     {
-        return $this->likes()->where('user_id', $userId)->exists();
+        return $this->likes()->where('liker_id', $userId)->exists();
     }
 
     /**
@@ -64,12 +64,12 @@ trait Likeable
      */
     public function getFormattedLikersCountAttribute()
     {
-        $count = $this->likers_count; // Use the followers count accessor
+        $count = $this->likes()->count();
 
         if ($count >= 1000) {
-            return round($count / 1000, 1).'K'; // Format as K
+            return round($count / 1000, 1).'K';
         }
 
-        return $count; // Return the count as is if less than 1000
+        return $count;
     }
 }

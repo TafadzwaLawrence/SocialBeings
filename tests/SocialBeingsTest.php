@@ -4,42 +4,44 @@ namespace TafadzwaLawrence\SocialBeings\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TafadzwaLawrence\SocialBeings\Traits\CanFavor;
 use TafadzwaLawrence\SocialBeings\Traits\CanFollow;
 use TafadzwaLawrence\SocialBeings\Traits\CanLike;
-use TafadzwaLawrence\SocialBeings\Traits\CanFavor;
 use TafadzwaLawrence\SocialBeings\Traits\CanSubscribe;
+use TafadzwaLawrence\SocialBeings\Traits\Favourable;
 use TafadzwaLawrence\SocialBeings\Traits\Followable;
 use TafadzwaLawrence\SocialBeings\Traits\Likeable;
-use TafadzwaLawrence\SocialBeings\Traits\Favourable;
 use TafadzwaLawrence\SocialBeings\Traits\Subscribable;
 
 class TestUser extends Authenticatable
 {
-    use CanFollow, CanLike, CanFavor, CanSubscribe;
+    use CanFavor, CanFollow, CanLike, CanSubscribe;
 
     protected $table = 'users';
+
     protected $fillable = ['name', 'email'];
 }
 
 class TestPost extends Model
 {
-    use Followable, Likeable, Favourable, Subscribable;
+    use Favourable, Followable, Likeable, Subscribable;
 
     protected $table = 'posts';
+
     protected $fillable = ['title', 'content'];
 }
 
 it('can load traits without errors', function () {
-    $user = new TestUser();
-    $post = new TestPost();
+    $user = new TestUser;
+    $post = new TestPost;
 
     expect($user)->toBeInstanceOf(TestUser::class);
     expect($post)->toBeInstanceOf(TestPost::class);
 });
 
 it('has correct trait methods', function () {
-    $user = new TestUser();
-    $post = new TestPost();
+    $user = new TestUser;
+    $post = new TestPost;
 
     // Check CanFollow methods
     expect(method_exists($user, 'follow'))->toBeTrue();
